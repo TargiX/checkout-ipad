@@ -12,7 +12,9 @@
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
+    "react-phone-input-2": "^2.11.0",
     "react-router-dom": "^5.1.2",
+    "react-router-last-location": "^2.0.1",
     "react-scripts": "3.4.0"
   },
   "scripts": {

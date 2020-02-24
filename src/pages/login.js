@@ -8,6 +8,7 @@ import axios from 'axios';
 const Login = () => {
    const [formData, setFormData] = useState({ bookingId: '', firstName: ''})
    const [redirectPath, setPath] = useState('')
+   
    const globalState = useContext(store);
    const { dispatch, state} = globalState;
 
@@ -25,21 +26,15 @@ const Login = () => {
       }
 
       if (state.user.success === true) {
-         console.log('Passed 1')
-        
          if (state.user.details.parent && state.user.details.parentName == formData.firstName ) {
-            console.log('Passed 2')
-            return <Redirect to='/nameconfirm'/>
+            return <Redirect to='/name-confirm'/>
          } else {
-            console.log('Passed 3')
-            return <Redirect to='/' />
+            return <Redirect to='/details' />
          }
        }
 
       return (
          <>
-
-      
             <Container>
                <header >
                <img className="top-logo" src="/img/gojump-america-logo.png"  width="252px" />

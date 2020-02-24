@@ -5,7 +5,6 @@ import { Redirect } from 'react-router-dom'
 
 const Home = () => {
    const [redirect, setRedirect] = useState(false)
-  
    if (redirect === true) {
       return <Redirect to='/login' />
     }
