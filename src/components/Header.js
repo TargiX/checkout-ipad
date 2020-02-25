@@ -13,7 +13,7 @@ function Header() {
       let location = useLocation();
       let history = useHistory()
       
-      let previousLocation = location.pathname == "/details" ?  '/login' : location.pathname == "/details-confirm" ? '/details' : location.pathname == "/emergency-contact" ? '/details-confirm' : ''
+      let previousLocation = location.pathname == "/details" ?  '/login' : location.pathname == "/details-confirm" ? '/details' : location.pathname == "/emergency-contact" ? '/details-confirm' : location.pathname == "/terms" ? '/emergency-contact' : ''
     
       if(location.pathname != "/" && location.pathname != "/login" && location.pathname != "/name-confirm"){
         return (
@@ -27,6 +27,7 @@ function Header() {
                 <div>
                   { location.pathname == "/details-confirm" ? <span className="main-text">Confirm Details</span> :
                     location.pathname == "/emergency-contact" ? <span className="main-text">Emergency Contact</span> :
+                    location.pathname == "/terms" ? <span className="main-text">Terms & Conditions</span> :
                     <img  src="/img/gojump-america-logo.png"  height="26px" alt="GoJump Logo"/>}
                 </div>
 

@@ -8,6 +8,7 @@ import NameConfirm from './pages/nameConfirm'
 import DetailsConfirm from './pages/detailsConfirm'
 import EmergencyContact from './pages/emergencyContact'
 import Details from './pages/details'
+import Terms from './pages/terms'
 
 
 import {
@@ -28,11 +29,11 @@ function App() {
             <Route exact path="/details/" > <Details /> </Route>
             <Route exact path="/details-confirm" > <DetailsConfirm /> </Route>
             <Route exact path="/emergency-contact" > <EmergencyContact /> </Route>
+            <Route exact path="/terms" > <Terms /> </Route>
             <Route exact path="/"> <Home /> </Route>
             <Route exact path="*" render={() => <Redirect to="/" />} />
           </Switch>
         </div>
-        
     </Router>
   );
 }

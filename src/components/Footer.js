@@ -27,12 +27,7 @@ function Footer(props) {
                 </div>
                 
                 <div>
-                    <Button onClick={() => { props.action()}}> Validate </Button>
-                     <Link to={nextLoc}> 
-                        <Button>
-                           Next
-                        </Button>
-                     </Link>
+                    <Button onClick={() => { props.action()}}> Next </Button>
                 </div>
             </Container>
           </div>

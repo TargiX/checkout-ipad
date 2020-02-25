@@ -1,16 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import Footer from '../components/Footer'
+import { useHistory } from 'react-router-dom'
+
+
+import { store } from '../store';
 
 const DetailsConfirm = () => {
+   const globalState = useContext(store);
+   const { dispatch, state } = globalState;
+   const history = useHistory();
 
-   const [formData, setFormData] = useState({
-       firstName: 'Rebecca',
-       surName: 'Smith',
-       email: 'rebecca.s@gmail.com',
-       phone: '+44-202-555-0102',
-       birthDate: '22/12/28',
-       weight: '65lbs'
-      })
+   const handleSubmit = () => {
+      history.push("/emergency-contact")
+   }
 
    return (
       <>
@@ -20,10 +24,12 @@ const DetailsConfirm = () => {
                      <span>Your First Name  </span>  
                   </Col>
                   <Col md="6" >
-                     <span className="confirm-item__details"> {formData.firstName} </span>  
+                     <span className="confirm-item__details"> {state.userData.firstName} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit">
-                     <span>Edit</span>   
+                     <Link to="/details">
+                        Edit
+                     </Link>  
                   </Col>
                </Row>  
 
@@ -32,10 +38,12 @@ const DetailsConfirm = () => {
                      <span>Your Surname</span>  
                   </Col>
                   <Col md="6" >
-                     <span className="confirm-item__details"> {formData.surName} </span>  
+                     <span className="confirm-item__details">{state.userData.surName} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
-                     <span>Edit</span>   
+                     <Link to="/details">
+                        Edit
+                     </Link>  
                   </Col>
                </Row>  
 
@@ -44,10 +52,12 @@ const DetailsConfirm = () => {
                      <span>Your Phone</span>  
                   </Col>
                   <Col md="6" >
-                     <span className="confirm-item__details"> {formData.phone} </span>  
+                     <span className="confirm-item__details"> {state.userData.phone} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
-                     <span>Edit</span>   
+                     <Link to="/details">
+                        Edit
+                     </Link>  
                   </Col>
                </Row>  
 
@@ -56,10 +66,12 @@ const DetailsConfirm = () => {
                      <span>Your Email  </span>  
                   </Col>
                   <Col md="6" >
-                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {formData.email} </span>  
+                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.email} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
-                     <span>Edit</span>   
+                     <Link to="/details">
+                        Edit
+                     </Link> 
                   </Col>
                </Row>  
 
@@ -68,10 +80,12 @@ const DetailsConfirm = () => {
                      <span>Your Date of Birth  </span>  
                   </Col>
                   <Col md="6" >
-                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {formData.birthDate} </span>  
+                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}>{state.userData.birthDate} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
-                     <span>Edit</span>   
+                     <Link to="/details">
+                        Edit
+                     </Link>
                   </Col>
                </Row>  
 
@@ -80,13 +94,16 @@ const DetailsConfirm = () => {
                      <span>Your Weight  </span>  
                   </Col>
                   <Col md="6" >
-                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {formData.weight} </span>  
+                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.weight}</span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
-                     <span>Edit</span>   
+                     <Link to="/details">
+                        Edit
+                     </Link>
                   </Col>
                </Row>  
          </Container>
+         <Footer action={handleSubmit} location="/emergency-contact" progress={50} />
       </>
    )
 }

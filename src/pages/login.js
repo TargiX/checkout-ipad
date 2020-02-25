@@ -7,7 +7,8 @@ import axios from 'axios';
 
 const Login = () => {
    const [formData, setFormData] = useState({ bookingId: '', firstName: ''})
-   const [redirectPath, setPath] = useState('')
+   
+   const [errorMessage, setError] = useState('')
    
    const globalState = useContext(store);
    const { dispatch, state} = globalState;
@@ -15,16 +16,23 @@ const Login = () => {
 
    const getBookingData = async (event) => {
       event.preventDefault();
-      const result = await axios(
-         `https://booking.staging.dzmanage.com/api/v1/verifyBookingId/${formData.bookingId}/${formData.firstName}`,
-         );
-         
-         dispatch({
-         type: 'setBookingData',
-         user: result.data,
-         bookingId: formData.bookingId
-         })
-      }
+
+         const result = await axios(
+            `https://booking.staging.dzmanage.com/api/v1/verifyBookingId/${formData.bookingId}/${formData.firstName}`,
+            );
+            console.log(result.data.error)
+         if (!result.data.error) {
+            dispatch({
+               type: 'setBookingData',
+               user: result.data,
+               bookingId: formData.bookingId
+               })
+            }
+
+         else {
+            setError(result.data.error); // or some thing like that
+         }
+      };
 
       if (state.user.success === true) {
          if (state.user.details.parent && state.user.details.parentName == formData.firstName ) {
@@ -64,6 +72,8 @@ const Login = () => {
                            onChange={event => setFormData({...formData, firstName: event.target.value})}  
                            />
                      </Form.Group>
+         
+                     { errorMessage ? <p className="text-danger ">{errorMessage}</p> : ''}
 
                      <Button onClick={getBookingData}
                         variant="primary" type="submit">

@@ -4,8 +4,9 @@ import React, {createContext, useReducer} from 'react';
 const initialState = {
    user: '',
    parent: '',
-   bookingId: ''
-   
+   bookingId: '',
+   userData: '',
+   signature: '',
 };
 
 
@@ -21,6 +22,12 @@ const StateProvider = ( { children } ) => {
            user: action.user,
            bookingId: action.bookingId
         };
+
+        case 'setUserData':
+          return {
+             ...state,
+             userData: action.userData,
+          };
 
         case 'setParent':
           return {
