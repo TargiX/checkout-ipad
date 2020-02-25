@@ -16,7 +16,7 @@ const DetailsConfirm = () => {
       <>
          <Container className="confirm-item" >
                <Row >
-                  <Col md="4" style={{lineHeight: '30px'}} >
+                  <Col md="4"  className="confirm-item__label" >
                      <span>Your First Name  </span>  
                   </Col>
                   <Col md="6" >
@@ -28,7 +28,7 @@ const DetailsConfirm = () => {
                </Row>  
 
                <Row>
-                  <Col md="4" style={{lineHeight: '30px'}} >
+                  <Col md="4"  className="confirm-item__label" >
                      <span>Your Surname</span>  
                   </Col>
                   <Col md="6" >
@@ -40,49 +40,49 @@ const DetailsConfirm = () => {
                </Row>  
 
                <Row>
-                  <Col md="4" style={{lineHeight: '30px'}} >
+                  <Col md="4"  className="confirm-item__label" >
                      <span>Your Phone</span>  
                   </Col>
                   <Col md="6" >
                      <span className="confirm-item__details"> {formData.phone} </span>  
                   </Col>
-                  <Col md="2" style={{lineHeight: '30px'}} >
+                  <Col md="2" className="confirm-item__edit" >
                      <span>Edit</span>   
                   </Col>
                </Row>  
 
                <Row>
-                  <Col md="4" style={{lineHeight: '30px'}} >
+                  <Col md="4" className="confirm-item__label" >
                      <span>Your Email  </span>  
                   </Col>
                   <Col md="6" >
                      <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {formData.email} </span>  
                   </Col>
-                  <Col md="2" style={{lineHeight: '30px'}} >
+                  <Col md="2" className="confirm-item__edit" >
                      <span>Edit</span>   
                   </Col>
                </Row>  
 
                <Row>
-                  <Col md="4" style={{lineHeight: '30px'}} >
+                  <Col md="4" className="confirm-item__label" >
                      <span>Your Date of Birth  </span>  
                   </Col>
                   <Col md="6" >
                      <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {formData.birthDate} </span>  
                   </Col>
-                  <Col md="2" style={{lineHeight: '30px'}} >
+                  <Col md="2" className="confirm-item__edit" >
                      <span>Edit</span>   
                   </Col>
                </Row>  
 
                <Row>
-                  <Col md="4" style={{lineHeight: '30px'}} >
+                  <Col md="4" className="confirm-item__label" >
                      <span>Your Weight  </span>  
                   </Col>
                   <Col md="6" >
                      <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {formData.weight} </span>  
                   </Col>
-                  <Col md="2" style={{lineHeight: '30px'}} >
+                  <Col md="2" className="confirm-item__edit" >
                      <span>Edit</span>   
                   </Col>
                </Row>  

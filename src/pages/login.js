@@ -20,8 +20,9 @@ const Login = () => {
          );
          
          dispatch({
-         type: 'getBookingData',
-         user: result.data
+         type: 'setBookingData',
+         user: result.data,
+         bookingId: formData.bookingId
          })
       }
 

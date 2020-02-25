@@ -3,6 +3,8 @@ import React, {createContext, useReducer} from 'react';
 
 const initialState = {
    user: '',
+   parent: '',
+   bookingId: ''
    
 };
 
@@ -13,11 +15,19 @@ const { Provider } = store;
 const StateProvider = ( { children } ) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch(action.type) {
-      case 'getBookingData':
+      case 'setBookingData':
         return {
            ...state,
-           user: action.user
-        }
+           user: action.user,
+           bookingId: action.bookingId
+        };
+
+        case 'setParent':
+          return {
+             ...state,
+             parent: action.parent
+          };
+        
       default:
         throw new Error();
     };

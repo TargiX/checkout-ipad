@@ -25,14 +25,14 @@ function App() {
           <Switch>
             <Route exact path="/login" > <Login /> </Route>
             <Route exact path="/name-confirm" > <NameConfirm /> </Route>
-            <Route exact path="/details" > <Details /> </Route>
+            <Route exact path="/details/" > <Details /> </Route>
             <Route exact path="/details-confirm" > <DetailsConfirm /> </Route>
             <Route exact path="/emergency-contact" > <EmergencyContact /> </Route>
             <Route exact path="/"> <Home /> </Route>
             <Route exact path="*" render={() => <Redirect to="/" />} />
           </Switch>
         </div>
-        <Footer/>
+        
     </Router>
   );
 }
