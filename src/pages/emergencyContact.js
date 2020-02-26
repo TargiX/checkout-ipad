@@ -17,8 +17,8 @@ const EmergencyContact = () => {
 
    const schema = yup.object({
       firstName: yup.string().required(),
-      surName: yup.string().required(),
-      relationship: yup.string().required(),
+      lastName: yup.string().required(),
+      relation: yup.string().required(),
       phone: yup.string().matches( /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/).required(),
     });
   
@@ -40,9 +40,9 @@ const EmergencyContact = () => {
             }
             initialValues={{
                firstName: state.userData.emergency ? state.userData.emergency.firstName : '',
-               surName: state.userData.emergency ? state.userData.surName : '', 
-               phone:  state.userData.emergency ? state.userData.phone : '',
-               relationship: state.userData.emergency ? state.userData.relationship : '',
+               lastName: state.userData.emergency ? state.userData.emergency.lastName : '', 
+               phone:  state.userData.emergency ? state.userData.emergency.phone : '',
+               relation: state.userData.emergency ? state.userData.emergency.relation : '',
             }}
          >
          
@@ -68,9 +68,9 @@ const EmergencyContact = () => {
                      </Form.Group>
             </Col>
             <Col md="6" >
-                     <Form.Group controlId="surName">
-                        <Form.Label>SURNAME </Form.Label>
-                        <Form.Control type={'text'}  placeholder="Enter your last name"  value={values.surName} onChange={handleChange} isValid={touched.surName && !errors.surName}  isInvalid={!!errors.surName} />
+                     <Form.Group controlId="lastName">
+                        <Form.Label>lastName </Form.Label>
+                        <Form.Control type={'text'}  placeholder="Enter your last name"  value={values.lastName} onChange={handleChange} isValid={touched.lastName && !errors.lastName}  isInvalid={!!errors.lastName} />
                         <Form.Control.Feedback type="invalid">
                            Last name is a required field
                         </Form.Control.Feedback>
@@ -97,11 +97,11 @@ const EmergencyContact = () => {
                         </Form.Group>   
             </Col>
             <Col md="6" >
-                     <Form.Group controlId="relationship">
-                        <Form.Label>RELATIONSHIP</Form.Label>
-                        <Form.Control type={'text'} placeholder="How are you related to them?"  value={values.relationship} onChange={ handleChange} isValid={touched.relationship && !errors.relationship} isInvalid={!!errors.relationship}/>
+                     <Form.Group controlId="relation">
+                        <Form.Label>relation</Form.Label>
+                        <Form.Control type={'text'} placeholder="How are you related to them?"  value={values.relation} onChange={ handleChange} isValid={touched.relation && !errors.relation} isInvalid={!!errors.relation}/>
                         <Form.Control.Feedback type="invalid">
-                           {errors.relationship}
+                           {errors.relation}
                         </Form.Control.Feedback>
                      </Form.Group>
             </Col>

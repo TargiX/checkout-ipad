@@ -35,10 +35,10 @@ const DetailsConfirm = () => {
 
                <Row>
                   <Col md="4"  className="confirm-item__label" >
-                     <span>Your Surname</span>  
+                     <span>Your lastName</span>  
                   </Col>
                   <Col md="6" >
-                     <span className="confirm-item__details">{state.userData.surName} </span>  
+                     <span className="confirm-item__details">{state.userData.lastName} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
                      <Link to="/details">

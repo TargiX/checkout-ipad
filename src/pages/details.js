@@ -17,7 +17,7 @@ const Details = () => {
 
    const schema = yup.object({
       firstName: yup.string().required(),
-      surName: yup.string().required(),
+      lastName: yup.string().required(),
       email: yup.string().email().required(),
       phone: yup.string().matches( /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/).required(),
       birthDate: yup.string().required(),
@@ -37,7 +37,7 @@ const Details = () => {
             }
             initialValues={{
                firstName: state.parent ?  state.user.details.parentName : state.userData ? state.userData.firstName : '',
-               surName: state.parent ?  state.user.details.parentSurName   : state.userData ? state.userData.surName : '', 
+               lastName: state.parent ?  state.user.details.parentlastName   : state.userData ? state.userData.lastName : '', 
                email: state.parent ?  state.user.details.parentEmail  : state.userData ? state.userData.email : '',
                phone: state.parent ?  state.user.details.parentPhone  : state.userData ? state.userData.phone : '',
                birthDate: state.userData ? state.userData.birthDate : '',
@@ -68,9 +68,9 @@ const Details = () => {
                      </Form.Group>
             </Col>
             <Col md="6" >
-                     <Form.Group controlId="surName">
-                        <Form.Label>SURNAME </Form.Label>
-                        <Form.Control type={'text'}  placeholder="Enter your last name"  value={values.surName} onChange={handleChange} isValid={touched.surName && !errors.surName}  isInvalid={!!errors.surName} />
+                     <Form.Group controlId="lastName">
+                        <Form.Label>lastName </Form.Label>
+                        <Form.Control type={'text'}  placeholder="Enter your last name"  value={values.lastName} onChange={handleChange} isValid={touched.lastName && !errors.lastName}  isInvalid={!!errors.lastName} />
                         <Form.Control.Feedback type="invalid">
                            Last name is a required field
                         </Form.Control.Feedback>

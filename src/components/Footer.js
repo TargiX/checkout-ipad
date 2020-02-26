@@ -8,7 +8,8 @@ function Footer(props) {
       let location = useLocation();
 
       let nextLoc = props.location;
-      let action =  props.action;
+      
+      let action =  props.action || "";
      
       let progress =  props.progress;
 
@@ -27,7 +28,7 @@ function Footer(props) {
                 </div>
                 
                 <div>
-                    <Button onClick={() => { props.action()}}> Next </Button>
+                    <Button onClick={action}> Next </Button>
                 </div>
             </Container>
           </div>
