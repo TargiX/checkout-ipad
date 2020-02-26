@@ -8,14 +8,13 @@ function Footer(props) {
       let location = useLocation();
 
       let nextLoc = props.location;
+      let disabled = props.disabled || false;
       
       let action =  props.action || "";
      
       let progress =  props.progress;
 
       let nextLocation = location.pathname == "/details" ?  'details-confirm' :  location.pathname == "/details-confirm" ?  'emergency-contact' : "";
-
-    
 
       if (location.pathname != "/" && location.pathname != "/login" && location.pathname != "/name-confirm" ){
          
@@ -28,7 +27,7 @@ function Footer(props) {
                 </div>
                 
                 <div>
-                    <Button onClick={action}> Next </Button>
+                    <Button disabled={disabled} onClick={action}> Next </Button>
                 </div>
             </Container>
           </div>

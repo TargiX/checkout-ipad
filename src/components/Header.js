@@ -15,7 +15,7 @@ function Header() {
       
       let previousLocation = location.pathname == "/details" ?  '/login' : location.pathname == "/details-confirm" ? '/details' : location.pathname == "/emergency-contact" ? '/details-confirm' : location.pathname == "/terms" ? '/emergency-contact' : ''
     
-      if(location.pathname != "/" && location.pathname != "/login" && location.pathname != "/name-confirm"){
+      if(location.pathname != "/" && location.pathname != "/login" && location.pathname != "/name-confirm" && location.pathname != "/final-confirm" ){
         return (
         
           <div className="header mb-5 ">

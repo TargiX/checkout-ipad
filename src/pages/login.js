@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { store } from '../store';
 import { Redirect } from 'react-router-dom'
 import axios from 'axios';
-
+import { useHistory } from 'react-router-dom'
 
 const Login = () => {
    const [formData, setFormData] = useState({ bookingId: '', firstName: ''})
-   
+   const history = useHistory();
    const [errorMessage, setError] = useState('')
    
    const globalState = useContext(store);
@@ -20,13 +20,22 @@ const Login = () => {
          const result = await axios(
             `https://booking.staging.dzmanage.com/api/v1/verifyBookingId/${formData.bookingId}/${formData.firstName}`,
             );
-            console.log(result.data.error)
+            
          if (!result.data.error) {
-            dispatch({
+            await dispatch({
                type: 'setBookingData',
                user: result.data,
                bookingId: formData.bookingId
                })
+               
+               if (state.user.success === true) {
+                  if (state.user.details.parent && state.user.details.parentName == formData.firstName ) {
+                     history.push("/name-confirm") 
+                  } else {
+                     history.push("/details") 
+                  }
+                }
+              
             }
 
          else {
@@ -34,13 +43,6 @@ const Login = () => {
          }
       };
 
-      if (state.user.success === true) {
-         if (state.user.details.parent && state.user.details.parentName == formData.firstName ) {
-            return <Redirect to='/name-confirm'/>
-         } else {
-            return <Redirect to='/details' />
-         }
-       }
 
       return (
          <>

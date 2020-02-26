@@ -3,10 +3,10 @@ import { Redirect } from 'react-router-dom'
 import Login from './pages/login'
 import Home from './pages/home'
 import Header from './components/Header'
-import Footer from './components/Footer'
 import NameConfirm from './pages/nameConfirm'
 import DetailsConfirm from './pages/detailsConfirm'
 import EmergencyContact from './pages/emergencyContact'
+import FinalConfirm from './pages/finalConfirm'
 import Details from './pages/details'
 import Terms from './pages/terms'
 
@@ -29,6 +29,7 @@ function App() {
             <Route exact path="/details/" > <Details /> </Route>
             <Route exact path="/details-confirm" > <DetailsConfirm /> </Route>
             <Route exact path="/emergency-contact" > <EmergencyContact /> </Route>
+            <Route exact path="/final-confirm" > <FinalConfirm /> </Route>
             <Route exact path="/terms" > <Terms /> </Route>
             <Route exact path="/"> <Home /> </Route>
             <Route exact path="*" render={() => <Redirect to="/" />} />

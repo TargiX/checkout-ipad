@@ -37,7 +37,7 @@ const Details = () => {
             }
             initialValues={{
                firstName: state.parent ?  state.user.details.parentName : state.userData ? state.userData.firstName : '',
-               lastName: state.parent ?  state.user.details.parentlastName   : state.userData ? state.userData.lastName : '', 
+               lastName: state.parent ?  state.user.details.parentSurName   : state.userData ? state.userData.lastName : '', 
                email: state.parent ?  state.user.details.parentEmail  : state.userData ? state.userData.email : '',
                phone: state.parent ?  state.user.details.parentPhone  : state.userData ? state.userData.phone : '',
                birthDate: state.userData ? state.userData.birthDate : '',
@@ -69,7 +69,7 @@ const Details = () => {
             </Col>
             <Col md="6" >
                      <Form.Group controlId="lastName">
-                        <Form.Label>lastName </Form.Label>
+                        <Form.Label>Last Name </Form.Label>
                         <Form.Control type={'text'}  placeholder="Enter your last name"  value={values.lastName} onChange={handleChange} isValid={touched.lastName && !errors.lastName}  isInvalid={!!errors.lastName} />
                         <Form.Control.Feedback type="invalid">
                            Last name is a required field

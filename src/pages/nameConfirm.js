@@ -10,12 +10,10 @@ const NameConfirm = () => {
    const globalState =  useContext(store);
    const { dispatch, state} = globalState;
     
-   const updateParent = () => {
-      console.log('parent updated')
-
+   const updateParent = (value) => {
       dispatch({
          type: 'setParent',
-         parent: true
+         parent: value
       })
    }
 
@@ -26,18 +24,18 @@ const NameConfirm = () => {
                <Row className="justify-content-center align-items-center" style={{height: '90vh'}}>
                   <Col lg="6" className="text-center ">
                   <img className="mb-5" src="/img/giphy.png"  width="400px" />
-                        <h3>Are you the {state.user.details.parentName || 'Undefined'} that made this booking?</h3>
+                        <h3>Are you the {state.user ? state.user.details.parentName : 'Undefined'} that made this booking?</h3>
                         <h5>Just a few things to clear before your jump.</h5>
 
                         <div className="mt-5"> 
-                           <Link to="/details" >
+                           <Link to="/details"  onClick={() => {updateParent(false)}} >
                               <Button className="mr-5"
-                                 variant="primary" >
+                                 variant="outline-primary" >
                                  No
                               </Button> 
                            </Link>
                            
-                           <Link to="/details" onClick={updateParent}>
+                           <Link to="/details" onClick={() => {updateParent(true)}}>
                               <Button 
                                  variant="primary" >
                                  Yes
