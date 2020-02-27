@@ -21,38 +21,38 @@ const Terms = () => {
 
 
    const [checkboxes, setCheckboxes] = useState({
-      // javascript: false,
-      // javascript2: false,
-      // javascript3: false,
-      // javascript4: false,
-      // javascript31: false,
-      // javascript5: false,
-      // javascript6: false,
-      // javascript7: false,
-      // javascript41: false,
-      // javascript42: false,
-      // javascript43: false,
-      // javascript44: false,
-      // javascript51: false,
-      // javascript61: false,
-      // javascript62: false,
-      // javascript63: false,
-      // javascript71: false,
-      // javascript72: false,
-      // javascript81: false,
-      // javascript91: false,
-      // javascript92: false,
-      // javascript93: false,
-      // javascript101: false,
-      // javascript102: false,
-      // javascript111: false,
-      // javascript121: false,
-      // javascript131: false,
-      // javascript132: false,
-      // javascript133: false,
-      // javascript151: false,
-      // javascript152: false,
-      // javascript16: false,
+      javascript: false,
+      javascript2: false,
+      javascript3: false,
+      javascript4: false,
+      javascript31: false,
+      javascript5: false,
+      javascript6: false,
+      javascript7: false,
+      javascript41: false,
+      javascript42: false,
+      javascript43: false,
+      javascript44: false,
+      javascript51: false,
+      javascript61: false,
+      javascript62: false,
+      javascript63: false,
+      javascript71: false,
+      javascript72: false,
+      javascript81: false,
+      javascript91: false,
+      javascript92: false,
+      javascript93: false,
+      javascript101: false,
+      javascript102: false,
+      javascript111: false,
+      javascript121: false,
+      javascript131: false,
+      javascript132: false,
+      javascript133: false,
+      javascript151: false,
+      javascript152: false,
+      javascript16: false,
       javascript17: false,
    })
 
@@ -62,24 +62,23 @@ const Terms = () => {
       history.push("/final-confirm")
    }
 
-   const updateChecked = async (event) => {
+   const updateChecked = (event) => {
       // console.log(event.target.checked)
       // console.log(event.target.id)
-      // console.log(checkboxes)
-
-    
-      await setCheckboxes({...checkboxes, [event.target.id]: event.target.checked})
-      
-
-      
-      if (!Object.values(checkboxes).includes(false)) {
-            setConfirmButton(false)
-      } else {
-         setConfirmButton(true)
-      } 
-
-      
+      // console.log(checkboxes)   
+      setCheckboxes({...checkboxes, [event.target.id]: event.target.checked})
    }
+
+   useEffect(() => {
+   
+    if (!Object.values(checkboxes).includes(false)) {
+        setConfirmButton(false)
+    } else {
+      setConfirmButton(true)
+    } 
+  },  [checkboxes]);
+
+   
 
    let firstName = state.user ? state.user.details.firstName : 'John'
    let lastName = state.user ? state.user.details.lastName : 'Smith'
