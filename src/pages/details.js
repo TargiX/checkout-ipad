@@ -158,7 +158,7 @@ const Details = () => {
             <Col md="4" >
                <Form.Group controlId="birthDate">
                   <Form.Label>DATE OF BIRTH</Form.Label>
-                  <Form.Control type={'text'} ref={dateRef} placeholder="MM-DD-YY" readonly value={values.birthDate} onClick={handleClick} onChange={handleChange} isValid={touched.birthDate && !errors.birthDate} isInvalid={!!errors.birthDate}/>
+                  <Form.Control type={'text'} ref={dateRef} placeholder="MM-DD-YY" readOnly={true} value={values.birthDate} onClick={handleClick} onChange={handleChange} isValid={touched.birthDate && !errors.birthDate} isInvalid={!!errors.birthDate}/>
                   <Form.Control.Feedback type="invalid">
                      {errors.birthDate}
                   </Form.Control.Feedback>
