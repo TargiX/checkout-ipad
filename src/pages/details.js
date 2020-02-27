@@ -66,7 +66,7 @@ const Details = () => {
       lastName: yup.string().required(),
       email: yup.string().email().required(),
       phone: yup.string().matches( /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/).required(),
-      birthDate: yup.date().nullable().required(),
+      birthDate: yup.string().required(),
       weight: yup.number().required().positive().integer()
     });
   
