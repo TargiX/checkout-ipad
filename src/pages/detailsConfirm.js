@@ -27,7 +27,7 @@ const DetailsConfirm = () => {
                      <span className="confirm-item__details"> {state.userData.firstName} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit">
-                     <Link to="/details">
+                     <Link to="/details/firstNameRef">
                         Edit
                      </Link>  
                   </Col>
@@ -41,7 +41,7 @@ const DetailsConfirm = () => {
                      <span className="confirm-item__details">{state.userData.lastName} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
-                     <Link to="/details">
+                     <Link to="/details/lastNameRef">
                         Edit
                      </Link>  
                   </Col>
@@ -55,7 +55,7 @@ const DetailsConfirm = () => {
                      <span className="confirm-item__details"> {state.userData.phone} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
-                     <Link to="/details">
+                     <Link to="/details/phoneRef">
                         Edit
                      </Link>  
                   </Col>
@@ -69,7 +69,7 @@ const DetailsConfirm = () => {
                      <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.email} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
-                     <Link to="/details">
+                     <Link to="/details/emailRef">
                         Edit
                      </Link> 
                   </Col>
@@ -83,7 +83,7 @@ const DetailsConfirm = () => {
                      <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}>{state.userData.birthDate} </span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
-                     <Link to="/details">
+                     <Link to="/details/dateRef">
                         Edit
                      </Link>
                   </Col>
@@ -94,10 +94,10 @@ const DetailsConfirm = () => {
                      <span>Your Weight  </span>  
                   </Col>
                   <Col md="6" >
-                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.weight}</span>  
+                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.weight} lbs</span>  
                   </Col>
                   <Col md="2" className="confirm-item__edit" >
-                     <Link to="/details">
+                     <Link to="/details/weightRef">
                         Edit
                      </Link>
                   </Col>
