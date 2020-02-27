@@ -8,10 +8,19 @@ import { Container } from 'react-bootstrap';
 
 function Header() {
       const globalState = useContext(store);
-      const { state } = globalState;
+      const { dispatch, state } = globalState;
 
       let location = useLocation();
       let history = useHistory()
+
+
+      const cleanState = () => {
+        if (previousLocation == "/login")
+        dispatch({
+           type: 'resetState',
+        })
+     }
+   
       
       let previousLocation = location.pathname == "/details" ?  '/login' : location.pathname == "/details-confirm" ? '/details' : location.pathname == "/emergency-contact" ? '/details-confirm' : location.pathname == "/terms" ? '/emergency-contact' : ''
     
@@ -19,7 +28,7 @@ function Header() {
         return (
         
           <div className="header mb-5 ">
-            <Link to={previousLocation}>
+            <Link to={previousLocation} onClick={cleanState}>
                 <img  src="/img/back-arrow.svg"  height="15px" alt="GoJump Logo" style={{position: 'absolute', top: '30px', left: '40px' }}/>
            </Link>
       

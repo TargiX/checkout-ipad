@@ -9,6 +9,13 @@ const FinalConfirm = () => {
    const globalState = useContext(store);
    const { dispatch, state } = globalState;
    const history = useHistory();
+
+   const cleanState = () => {
+
+      dispatch({
+         type: 'resetState',
+      })
+   }
  
    return (
         <Container>

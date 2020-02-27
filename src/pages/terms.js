@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import { store } from '../store';
 import PhoneInput from 'react-phone-input-2'
 import { useHistory } from 'react-router-dom'
+import axios from 'axios';
 import 'react-phone-input-2/lib/style.css'
 
 
@@ -58,8 +59,24 @@ const Terms = () => {
 
    const [errorMessage, setError] = useState('')
 
-   const handleSubmit = () => {
-      history.push("/final-confirm")
+   const handleSubmit = async (event) => {
+      
+      let params =  {
+         userData: state.userData,
+         parent: state.parent,
+         signature: ''
+      }
+      
+      const result = await axios.post(
+         `https://booking.staging.dzmanage.com/api/v1/saveSlotDetails/${state.bookingId}/`,
+      params);
+
+
+      console.log(result)
+      if (result.data.success) {
+            history.push("/final-confirm")
+     
+         }
    }
 
    const updateChecked = (event) => {
@@ -70,7 +87,6 @@ const Terms = () => {
    }
 
    useEffect(() => {
-   
     if (!Object.values(checkboxes).includes(false)) {
         setConfirmButton(false)
     } else {

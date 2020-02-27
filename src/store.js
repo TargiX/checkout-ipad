@@ -9,7 +9,6 @@ const initialState = {
    signature: '',
 };
 
-
 const store = createContext(initialState);
 const { Provider } = store;
 
@@ -34,6 +33,15 @@ const StateProvider = ( { children } ) => {
              ...state,
              parent: action.parent
           };
+
+          case 'resetState':
+            return {
+              user: '',
+              parent: '',
+              bookingId: '',
+              userData: '',
+              signature: '',
+            };
         
       default:
         throw new Error();

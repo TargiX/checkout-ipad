@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { store } from '../store';
 import { Redirect } from 'react-router-dom'
@@ -12,7 +12,6 @@ const Login = () => {
    
    const globalState = useContext(store);
    const { dispatch, state} = globalState;
-
 
    const getBookingData = async (event) => {
       event.preventDefault();
@@ -28,20 +27,24 @@ const Login = () => {
                bookingId: formData.bookingId
                })
                
-               if (state.user.success === true) {
-                  if (state.user.details.parent && state.user.details.parentName == formData.firstName ) {
-                     history.push("/name-confirm") 
-                  } else {
-                     history.push("/details") 
-                  }
-                }
               
             }
-
          else {
             setError(result.data.error); // or some thing like that
          }
+         
       };
+
+
+      useEffect(() => {
+         if (state.user.success === true) {
+            if (state.user.details.parent && state.user.details.parentName == formData.firstName ) {
+               history.push("/name-confirm") 
+            } else {
+               history.push("/details") 
+            }
+          }
+       },  [state.user]);
 
 
       return (
