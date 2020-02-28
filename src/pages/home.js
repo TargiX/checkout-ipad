@@ -1,17 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
+import { store } from '../store';
+import { useHistory, Link } from 'react-router-dom'
 
 
 const Home = () => {
-   const [redirect, setRedirect] = useState(false)
-   if (redirect === true) {
-      return <Redirect to='/login' />
-    }
+   const globalState = useContext(store);
+   const { dispatch, state } = globalState;
+   const history = useHistory();
+
+   const cleanState = () => {
+      dispatch({
+         type: 'resetState',
+      })
+      history.push("/login")
+   }
 
    return (
       <>
-         <Container onClick={() => setRedirect(true)}>
+         <Container onClick={cleanState}>
             <header >
                <img className="top-logo" src="/img/gojump-america-logo.png" width="252px" />
             </header>
