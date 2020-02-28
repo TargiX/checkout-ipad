@@ -38,6 +38,8 @@ const Details = () => {
       let convertedTime = (newTime.getMonth()+1)+'-'+newTime.getDate()+'-'+newTime.getFullYear();
       setFieldValue('birthDate', convertedTime, true)
       setOpen(false);
+      weightRef.current.focus()
+
    }
 
    useEffect(() => {
@@ -65,6 +67,8 @@ const Details = () => {
    const stateRef = useRef(null);
    const countryRef = useRef(null);
    const zipcodeRef = useRef(null);
+
+
    
    
    const schema = yup.object({
@@ -81,6 +85,18 @@ const Details = () => {
       zipcode: yup.string().required(),
       weight: yup.number().required().positive().integer()
     });
+
+
+    
+   const keyPress = (e, ref) => {
+      if(e.keyCode == 13){
+         console.log(ref)
+         ref.current.focus()
+         if (ref.current.id == 'birthDate' ) {
+            setOpen(true);
+         }
+      }
+   }
   
    return (
          <Formik 
@@ -131,7 +147,7 @@ const Details = () => {
             <Col md="6" >
                <Form.Group controlId="firstName">
                   <Form.Label>FIRST NAME</Form.Label>
-                  <Form.Control type={'text'}  ref={firstNameRef} placeholder="Enter your first name"  value={values.firstName} onChange={handleChange} isValid={touched.firstName && !errors.firstName}  isInvalid={!!errors.firstName} />
+                  <Form.Control type={'text'}  ref={firstNameRef} placeholder="Enter your first name"  value={values.firstName} onChange={handleChange} onKeyDown={(e) => keyPress(e, lastNameRef) } isValid={touched.firstName && !errors.firstName}  isInvalid={!!errors.firstName} />
                   <Form.Control.Feedback></Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
                      First name is a required field
@@ -141,7 +157,7 @@ const Details = () => {
             <Col md="6" >
                <Form.Group controlId="lastName">
                   <Form.Label>LAST NAME </Form.Label>
-                  <Form.Control type={'text'}   ref={lastNameRef} placeholder="Enter your last name"  value={values.lastName} onChange={handleChange} isValid={touched.lastName && !errors.lastName}  isInvalid={!!errors.lastName} />
+                  <Form.Control type={'text'}   ref={lastNameRef} placeholder="Enter your last name"  value={values.lastName} onChange={handleChange} onKeyDown={(e) => keyPress(e, emailRef)} isValid={touched.lastName && !errors.lastName}  isInvalid={!!errors.lastName} />
                   <Form.Control.Feedback type="invalid">
                      Last name is a required field
                   </Form.Control.Feedback>
@@ -152,7 +168,7 @@ const Details = () => {
             <Col md="6" >
                <Form.Group controlId="email">
                   <Form.Label>EMAIL ADDRESS</Form.Label>
-                  <Form.Control type={'email'} ref={emailRef} placeholder="Enter your email address"  value={values.email} onChange={handleChange} isValid={touched.email && !errors.email} isInvalid={!!errors.email}/>
+                  <Form.Control type={'email'} ref={emailRef} placeholder="Enter your email address"  value={values.email} onChange={handleChange} onKeyDown={(e) => keyPress(e, phoneRef)} isValid={touched.email && !errors.email} isInvalid={!!errors.email}/>
                   <Form.Control.Feedback type="invalid">
                   {errors.email}
                   </Form.Control.Feedback>
@@ -161,7 +177,7 @@ const Details = () => {
             <Col md="6" >
                <Form.Group controlId="phone">
                      <Form.Label>PHONE NUMBER</Form.Label>
-                     <PhoneInput country={'us'} id="phone" name="phone" inputClass="form-control phone-icon" placeholder="Phone/Mobile" countryCodeEditable="false"  value={values.phone} 
+                     <PhoneInput country={'us'} id="phone" name="phone" inputClass="form-control phone-icon" placeholder="Phone/Mobile" countryCodeEditable="false" onKeyDown={(e) => keyPress(e, address1Ref)} value={values.phone} 
                      inputProps={{
                         onChange: handleChange,  
                         ref: phoneRef,
@@ -182,7 +198,7 @@ const Details = () => {
             <Col md="12" >
                <Form.Group controlId="address1">
                   <Form.Label>ADDRESS 1</Form.Label>
-                  <Form.Control type={'text'} ref={address1Ref} placeholder="Enter your address"  value={values.address1} onChange={handleChange} isValid={touched.address1 && !errors.address1}  isInvalid={!!errors.address1} />
+                  <Form.Control type={'text'} ref={address1Ref} placeholder="Enter your address"  value={values.address1} onChange={handleChange} onKeyDown={(e) => keyPress(e, address2Ref)} isValid={touched.address1 && !errors.address1}  isInvalid={!!errors.address1} />
                   <Form.Control.Feedback></Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
                      Address is a required field
@@ -192,7 +208,7 @@ const Details = () => {
             <Col md="12" >
                <Form.Group controlId="address2">
                   <Form.Label>ADDRESS 2</Form.Label>
-                  <Form.Control type={'text'} ref={address2Ref} placeholder=""  value={values.address2} onChange={handleChange} isValid={touched.address2 && !errors.address2}  isInvalid={!!errors.address2} />
+                  <Form.Control type={'text'} ref={address2Ref} placeholder=""  value={values.address2} onChange={handleChange} onKeyDown={(e) => keyPress(e, cityRef)} isValid={touched.address2 && !errors.address2}  isInvalid={!!errors.address2} />
                   <Form.Control.Feedback type="invalid">
                      
                   </Form.Control.Feedback>
@@ -204,7 +220,7 @@ const Details = () => {
             <Col md="6" >
                <Form.Group controlId="city">
                   <Form.Label>CITY</Form.Label>
-                  <Form.Control type={'text'} ref={cityRef} placeholder="Enter your city"  value={values.city} onChange={handleChange} isValid={touched.city && !errors.city}  isInvalid={!!errors.city} />
+                  <Form.Control type={'text'} ref={cityRef} placeholder="Enter your city"  value={values.city} onChange={handleChange} onKeyDown={(e) => keyPress(e, stateRef)}  isValid={touched.city && !errors.city}  isInvalid={!!errors.city} />
                   <Form.Control.Feedback></Form.Control.Feedback>
                   <Form.Control.Feedback type="invalid">
                      City is a required field
@@ -214,20 +230,19 @@ const Details = () => {
             <Col md="6" >
                <Form.Group controlId="state">
                   <Form.Label>STATE/REGION</Form.Label>
-                  <Form.Control type={'text'} ref={stateRef} placeholder="Enter your state/region"  value={values.state} onChange={handleChange} isValid={touched.state && !errors.state}  isInvalid={!!errors.state} />
+                  <Form.Control type={'text'} ref={stateRef} placeholder="Enter your state/region"  value={values.state} onChange={handleChange} onKeyDown={(e) => keyPress(e, countryRef)} isValid={touched.state && !errors.state}  isInvalid={!!errors.state} />
                   <Form.Control.Feedback type="invalid">
                      State/region is required field
                   </Form.Control.Feedback>
                </Form.Group>
             </Col>
-
          </Row>
 
          <Row className="mb-2">
             <Col md="6" >
                <Form.Group controlId="country">
                   <Form.Label>COUNTRY</Form.Label>
-                  <Form.Control as="select" type={'text'} ref={countryRef}  value={values.country} onChange={handleChange} isValid={touched.country && !errors.country}  isInvalid={!!errors.country} >
+                  <Form.Control as="select" type={'text'} ref={countryRef}  value={values.country} onChange={e => {handleChange(e); zipcodeRef.current.focus()}} isValid={touched.country && !errors.country}  isInvalid={!!errors.country} >
                       <CountryList/>
                   </Form.Control>
                   <Form.Control.Feedback type="invalid">
@@ -239,7 +254,7 @@ const Details = () => {
             <Col md="6">
                <Form.Group controlId="zipcode">
                   <Form.Label>ZIPCODE</Form.Label>
-                  <Form.Control type={'text'} ref={zipcodeRef} placeholder="Enter your postal code"  value={values.zipcode} onChange={handleChange} isValid={touched.zipcode && !errors.zipcode}  isInvalid={!!errors.zipcode} />
+                  <Form.Control type={'text'} ref={zipcodeRef} placeholder="Enter your postal code"  value={values.zipcode} onChange={handleChange} onKeyDown={(e) => keyPress(e, dateRef)} isValid={touched.zipcode && !errors.zipcode}  isInvalid={!!errors.zipcode} />
                   <Form.Control.Feedback type="invalid">
                      Postal is a required field
                   </Form.Control.Feedback>
@@ -251,7 +266,7 @@ const Details = () => {
             <Col md="4" >
                <Form.Group controlId="birthDate">
                   <Form.Label>DATE OF BIRTH</Form.Label>
-                  <Form.Control type={'text'} ref={dateRef} placeholder="MM-DD-YY" readOnly={true} value={values.birthDate} onClick={handleClick} onChange={handleChange} isValid={touched.birthDate && !errors.birthDate} isInvalid={!!errors.birthDate}/>
+                  <Form.Control type={'text'} ref={dateRef} placeholder="MM-DD-YY" readOnly={true} value={values.birthDate} onClick={handleClick} onChange={handleChange}  isValid={touched.birthDate && !errors.birthDate} isInvalid={!!errors.birthDate}/>
                   <Form.Control.Feedback type="invalid">
                      {errors.birthDate}
                   </Form.Control.Feedback>

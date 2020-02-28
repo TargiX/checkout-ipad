@@ -36,7 +36,6 @@ const Login = () => {
          
       };
 
-
       useEffect(() => {
          if (state.user.success === true) {
             if (state.user.details.parent && state.user.details.parentName == formData.firstName ) {
@@ -65,7 +64,7 @@ const Login = () => {
                      <Form.Group controlId="formBasicEmail">
                         <Form.Label>Enter booking ID</Form.Label>
 
-                           <InputMask mask={`${location.toUpperCase() + '-2020-'}*******`} alwaysShowMask={true}  value={formData.bookingId} onChange={event => setFormData({...formData, bookingId: event.target.value})}>
+                           <InputMask mask={`${location.toUpperCase() + '-2020-'}*******`} alwaysShowMask={true}  value={formData.bookingId} onChange={event => setFormData({...formData, bookingId: event.target.value.toUpperCase()})}>
                            {(inputProps) =>  <Form.Control 
                            type="text"
                            placeholder="Booking Id" 
