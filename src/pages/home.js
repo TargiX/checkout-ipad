@@ -13,9 +13,8 @@ const Home = () => {
       <>
          <Container onClick={() => setRedirect(true)}>
             <header >
-            <img className="top-logo" src="/img/gojump-america-logo.png" width="252px" />
+               <img className="top-logo" src="/img/gojump-america-logo.png" width="252px" />
             </header>
-            
             
             <Row className="justify-content-center">
                <Col className="start-box" lg="6" >

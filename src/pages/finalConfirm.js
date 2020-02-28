@@ -24,7 +24,7 @@ const FinalConfirm = () => {
                   <img className="mb-5" src="/img/giphy3.png"  width="400px" />
                      <h3>You’re good to go, {state.user ? state.user.details.parentName : 'Undefined'}! </h3>
                         <div className="mt-5"> 
-                           <Link to="/home" >
+                           <Link to="/home" onClick={cleanState}>
                               <Button 
                                  variant="primary"
                                  size="lg" >
