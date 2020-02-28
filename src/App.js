@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { Redirect } from 'react-router-dom'
 import Login from './pages/login'
 import Home from './pages/home'
@@ -9,7 +9,7 @@ import EmergencyContact from './pages/emergencyContact'
 import FinalConfirm from './pages/finalConfirm'
 import Details from './pages/details'
 import Terms from './pages/terms'
-
+import IdleTimer from 'react-idle-timer'
 
 import {
   BrowserRouter as Router,
@@ -19,12 +19,15 @@ import {
 } from "react-router-dom";
 
 function App() {
+
+  
+
   return (
     <Router>
         <Header/>
         <div>
           <Switch>
-            <Route exact path="/login" > <Login /> </Route>
+            <Route exact path="/login/:location" > <Login /> </Route>
             <Route exact path="/name-confirm" > <NameConfirm /> </Route>
             <Route exact path="/details/:focusinput/" > <Details /> </Route>
             <Route exact path="/details/" > <Details /> </Route>
@@ -32,12 +35,14 @@ function App() {
             <Route exact path="/emergency-contact" > <EmergencyContact /> </Route>
             <Route exact path="/final-confirm" > <FinalConfirm /> </Route>
             <Route exact path="/terms" > <Terms /> </Route>
-            <Route exact path="/"> <Home /> </Route>
-            <Route exact path="*" render={() => <Redirect to="/" />} />
+            <Route exact path="/home/:location"> <Home /> </Route>
+            
+            <Route exact path="*" render={() => <Redirect to="/home/lv" />} />
           </Switch>
         </div>
     </Router>
   );
 }
+
 
 export default App;

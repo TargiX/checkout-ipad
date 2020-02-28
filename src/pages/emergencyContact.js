@@ -30,6 +30,11 @@ const EmergencyContact = () => {
             onSubmit={ async (values) =>  { 
                let userEmergency =  state.userData
                userEmergency.emergency = values
+               userEmergency.emergency.phone = "+" + values.phone.replace(/\D/g,'');   
+    
+          
+
+
                console.log(userEmergency)
                await dispatch({
                type: 'setUserData',

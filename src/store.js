@@ -5,6 +5,7 @@ const initialState = {
    user: '',
    parent: '',
    bookingId: '',
+   location: '',
    userData: '',
    signature: '',
 };
@@ -19,7 +20,8 @@ const StateProvider = ( { children } ) => {
         return {
            ...state,
            user: action.user,
-           bookingId: action.bookingId
+           bookingId: action.bookingId,
+           location: action.location
         };
 
         case 'setUserData':
