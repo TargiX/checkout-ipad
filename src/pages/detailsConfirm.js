@@ -77,6 +77,90 @@ const DetailsConfirm = () => {
 
                <Row>
                   <Col md="4" className="confirm-item__label" >
+                     <span>Your Address 1  </span>  
+                  </Col>
+                  <Col md="6" >
+                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.address1} </span>  
+                  </Col>
+                  <Col md="2" className="confirm-item__edit" >
+                     <Link to="/details/address1Ref">
+                        Edit
+                     </Link> 
+                  </Col>
+               </Row> 
+
+               <Row>
+                  <Col md="4" className="confirm-item__label" >
+                     <span>Your Address 2  </span>  
+                  </Col>
+                  <Col md="6" >
+                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.address2} </span>  
+                  </Col>
+                  <Col md="2" className="confirm-item__edit" >
+                     <Link to="/details/address2Ref">
+                        Edit
+                     </Link> 
+                  </Col>
+               </Row> 
+
+               <Row>
+                  <Col md="4" className="confirm-item__label" >
+                     <span>Your City  </span>  
+                  </Col>
+                  <Col md="6" >
+                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.city} </span>  
+                  </Col>
+                  <Col md="2" className="confirm-item__edit" >
+                     <Link to="/details/cityRef">
+                        Edit
+                     </Link> 
+                  </Col>
+               </Row> 
+
+               <Row>
+                  <Col md="4" className="confirm-item__label" >
+                     <span>Your State/Region  </span>  
+                  </Col>
+                  <Col md="6" >
+                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.state} </span>  
+                  </Col>
+                  <Col md="2" className="confirm-item__edit" >
+                     <Link to="/details/stateRef">
+                        Edit
+                     </Link> 
+                  </Col>
+               </Row> 
+
+               <Row>
+                  <Col md="4" className="confirm-item__label" >
+                     <span>Your Country  </span>  
+                  </Col>
+                  <Col md="6" >
+                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.country} </span>  
+                  </Col>
+                  <Col md="2" className="confirm-item__edit" >
+                     <Link to="/details/countryRef">
+                        Edit
+                     </Link> 
+                  </Col>
+               </Row> 
+
+               <Row>
+                  <Col md="4" className="confirm-item__label" >
+                     <span>Your Zipcode  </span>  
+                  </Col>
+                  <Col md="6" >
+                     <span style={{fontSize: '20px', fontWeight: '600', color: '#000'}}> {state.userData.zipcode} </span>  
+                  </Col>
+                  <Col md="2" className="confirm-item__edit" >
+                     <Link to="/details/zipcodeRef">
+                        Edit
+                     </Link> 
+                  </Col>
+               </Row> 
+
+               <Row>
+                  <Col md="4" className="confirm-item__label" >
                      <span>Your Date of Birth  </span>  
                   </Col>
                   <Col md="6" >
@@ -102,6 +186,7 @@ const DetailsConfirm = () => {
                      </Link>
                   </Col>
                </Row>  
+
          </Container>
          <Footer action={handleSubmit} location="/emergency-contact" progress={50} />
       </>
