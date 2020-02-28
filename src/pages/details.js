@@ -97,6 +97,13 @@ const Details = () => {
          }
       }
    }
+
+   const keyPressFinal = (e, handleSubmit) => {
+      if(e.keyCode == 13){
+        
+         handleSubmit(e)
+      }
+   }
   
    return (
          <Formik 
@@ -284,7 +291,7 @@ const Details = () => {
             <Col md="8" >
                <Form.Group controlId="weight">
                      <Form.Label>WEIGHT </Form.Label>
-                     <Form.Control type={'number'} ref={weightRef} placeholder="Enter your weight in lbs" value={values.weight} onChange={handleChange} isValid={touched.weight && !errors.weight} isInvalid={!!errors.weight} />
+                     <Form.Control type={'number'} ref={weightRef} placeholder="Enter your weight in lbs" value={values.weight} onChange={handleChange} onKeyDown={(e) => keyPressFinal(e, handleSubmit)} isValid={touched.weight && !errors.weight} isInvalid={!!errors.weight} />
                      <Form.Control.Feedback type="invalid">
                         {errors.weight}
                   </Form.Control.Feedback>
