@@ -16,7 +16,7 @@ function Header() {
 
 
       const cleanState = () => {
-        if (previousLocation == "/login")
+        if (previousLocation == "/login/" + state.location)
         dispatch({
            type: 'resetState',
         })

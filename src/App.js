@@ -20,11 +20,6 @@ import {
 function App() {
 
   
-
-
-
-
-  
   return (
     <Router>
         <Header/>

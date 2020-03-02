@@ -36,6 +36,7 @@ const Login = () => {
          
       };
 
+  
       useEffect(() => {
          if (state.user.success === true) {
             if (state.user.details.parent && state.user.details.parentName == formData.firstName ) {
