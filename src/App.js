@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import { Redirect } from 'react-router-dom'
+import React, {useRef, useEffect} from 'react';
+import { Redirect, useHistory } from 'react-router-dom'
 import Login from './pages/login'
 import Home from './pages/home'
 import Header from './components/Header'
@@ -9,7 +9,6 @@ import EmergencyContact from './pages/emergencyContact'
 import FinalConfirm from './pages/finalConfirm'
 import Details from './pages/details'
 import Terms from './pages/terms'
-import IdleTimer from 'react-idle-timer'
 
 import {
   BrowserRouter as Router,
@@ -22,6 +21,10 @@ function App() {
 
   
 
+
+
+
+  
   return (
     <Router>
         <Header/>

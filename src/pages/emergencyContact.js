@@ -10,7 +10,6 @@ import Footer from '../components/Footer'
 
 
 const EmergencyContact = () => {
-
    const globalState = useContext(store);
    const { dispatch, state } = globalState;
    const history = useHistory();
@@ -22,19 +21,15 @@ const EmergencyContact = () => {
       phone: yup.string().matches( /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/).required(),
     });
   
-  
-   
    return (
       <Formik 
             validationSchema={schema}
+            validateOnChange={false}
             onSubmit={ async (values) =>  { 
                let userEmergency =  state.userData
                userEmergency.emergency = values
                userEmergency.emergency.phone = "+" + values.phone.replace(/\D/g,'');   
     
-          
-
-
                console.log(userEmergency)
                await dispatch({
                type: 'setUserData',
@@ -50,7 +45,7 @@ const EmergencyContact = () => {
                relation: state.userData.emergency ? state.userData.emergency.relation : '',
             }}
          >
-         
+
          {({ handleSubmit,
              handleChange,
              handleBlur,
@@ -59,7 +54,6 @@ const EmergencyContact = () => {
              isValid,
              errors}) => (
         <Form noValidate  onSubmit={handleSubmit}>
-        
         <Container >
          <Row className="mb-5">
             <Col md="6" >

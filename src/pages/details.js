@@ -18,9 +18,13 @@ const Details = () => {
    const history = useHistory();
 
    let { focusinput } = useParams();
+   const timeNow = new Date()
+   timeNow.setFullYear(timeNow.getFullYear() - 18) 
 
-   const [time, setTime] = useState(new Date())
+
+   const [time, setTime] = useState(timeNow)
    const [isOpen, setOpen] = useState(false)
+   const [validateCheck, setValidate] = useState(false)
 
 
    const [focusState, setFocus] = useState('')
@@ -39,21 +43,47 @@ const Details = () => {
       setFieldValue('birthDate', convertedTime, true)
       setOpen(false);
       weightRef.current.focus()
-
    }
 
    useEffect(() => {
-      setFocus(focusinput)
-      if (focusinput == 'dateRef' ) {
-         setOpen(true);
+      if ( focusinput ) {
+         setFocus(focusinput)
+         if (focusinput == 'dateRef' ) {
+            setOpen(true);
+         }
       }
     },  []);
 
    useEffect(() => {
-      if ( focusState ) {
+      if ( focusState && eval(focusState) != phoneRef  ) {
          eval(focusState).current.focus();
+      } else if (eval(focusState) == phoneRef) {
+        
+         phoneRef.current.numberInputRef.focus()
       }
     },  [focusState]);
+
+        
+   const keyPress = (e, ref) => {
+      if(e.keyCode == 13){
+         console.log(ref)
+         if (ref != phoneRef  ) {
+            ref.current.focus()
+         } else if (ref == phoneRef) {
+            phoneRef.current.numberInputRef.focus()
+         }
+       
+         if (ref.current.id == 'birthDate' ) {
+            setOpen(true);
+         }
+      }
+   }
+
+   const keyPressFinal = (e, handleSubmit) => {
+      if(e.keyCode == 13){
+         handleSubmit(e)
+      }
+   }
 
    const firstNameRef = useRef(null);
    const lastNameRef = useRef(null);
@@ -69,8 +99,6 @@ const Details = () => {
    const zipcodeRef = useRef(null);
 
 
-   
-   
    const schema = yup.object({
       firstName: yup.string().required(),
       lastName: yup.string().required(),
@@ -87,32 +115,17 @@ const Details = () => {
     });
 
 
-    
-   const keyPress = (e, ref) => {
-      if(e.keyCode == 13){
-         console.log(ref)
-         ref.current.focus()
-         if (ref.current.id == 'birthDate' ) {
-            setOpen(true);
-         }
-      }
-   }
 
-   const keyPressFinal = (e, handleSubmit) => {
-      if(e.keyCode == 13){
-        
-         handleSubmit(e)
-      }
-   }
   
    return (
          <Formik 
             validationSchema={schema}
+            validateOnChange={validateCheck}
+          
             onSubmit={ async (values) =>  { 
-               
+               setValidate(true)
                let formattedValues = values
                formattedValues.phone = "+" + values.phone.replace(/\D/g,'');   
-               
                await dispatch({
                   type: 'setUserData',
                   userData: formattedValues,
@@ -148,9 +161,8 @@ const Details = () => {
              errors}) => (
 
         <Form noValidate  onSubmit={handleSubmit}>
-        
         <Container >
-         <Row className="mb-2">
+         <Row className="mb-1">
             <Col md="6" >
                <Form.Group controlId="firstName">
                   <Form.Label>FIRST NAME</Form.Label>
@@ -171,7 +183,7 @@ const Details = () => {
                </Form.Group>
             </Col>
          </Row>
-         <Row className="mb-2">
+         <Row className="mb-1">
             <Col md="6" >
                <Form.Group controlId="email">
                   <Form.Label>EMAIL ADDRESS</Form.Label>
@@ -184,14 +196,13 @@ const Details = () => {
             <Col md="6" >
                <Form.Group controlId="phone">
                      <Form.Label>PHONE NUMBER</Form.Label>
-                     <PhoneInput country={'us'} id="phone" name="phone" inputClass="form-control phone-icon" placeholder="Phone/Mobile" countryCodeEditable="false" onKeyDown={(e) => keyPress(e, address1Ref)} value={values.phone} 
+                     <PhoneInput country={'us'} id="phone"  ref={phoneRef}   refinputClass="form-control phone-icon" placeholder="Phone/Mobile" countryCodeEditable="false" onKeyDown={(e) => keyPress(e, address1Ref)} value={values.phone} 
                      inputProps={{
                         onChange: handleChange,  
-                        ref: phoneRef,
-                     required: true,
-                     type: "tel",
-                     id: "phone",
-                     name: "phone",
+                        required: true,
+                        type: "tel",
+                        id: "phone",
+                        name: "phone",
                   }}
                />
                   <Form.Control.Feedback type="invalid" style={{'display': !!errors.phone ? 'block' : 'none' }}>
@@ -201,7 +212,7 @@ const Details = () => {
             </Col>
          </Row>
 
-         <Row className="mb-2">
+         <Row className="mb-1">
             <Col md="12" >
                <Form.Group controlId="address1">
                   <Form.Label>ADDRESS 1</Form.Label>
@@ -223,7 +234,7 @@ const Details = () => {
             </Col>
          </Row>
 
-         <Row className="mb-2">
+         <Row className="mb-1">
             <Col md="6" >
                <Form.Group controlId="city">
                   <Form.Label>CITY</Form.Label>
@@ -245,7 +256,7 @@ const Details = () => {
             </Col>
          </Row>
 
-         <Row className="mb-2">
+         <Row className="mb-1">
             <Col md="6" >
                <Form.Group controlId="country">
                   <Form.Label>COUNTRY</Form.Label>
@@ -295,13 +306,11 @@ const Details = () => {
                      <Form.Control.Feedback type="invalid">
                         {errors.weight}
                   </Form.Control.Feedback>
-                     
                </Form.Group> 
             </Col>
          </Row>
          </Container>
-      
-         <Footer action={handleSubmit} location="/details-confirm" progress={16} />
+         <Footer action={() => { handleSubmit(); setValidate(true)} } location="/details-confirm" progress={16} />
         </Form>
         )}
          </Formik>

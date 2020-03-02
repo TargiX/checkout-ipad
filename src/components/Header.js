@@ -1,7 +1,7 @@
-import React, {useContext, useRef }  from 'react'
+import React, {useContext, useEffect, useRef }  from 'react'
 import { store } from '../store';
 import {
-      Link, useHistory, useParams, Redirect 
+      Link, useHistory, 
  } from "react-router-dom";
 import { useLocation,  } from "react-router";
 import { Container } from 'react-bootstrap';
@@ -14,7 +14,7 @@ function Header() {
       let location = useLocation();
       let history = useHistory()
 
-      let { locationCity } = useParams();
+
       const cleanState = () => {
         if (previousLocation == "/login")
         dispatch({
@@ -22,15 +22,22 @@ function Header() {
         })
      }
 
+      useEffect(() => {
+        if (location.pathname == '/terms') {
+          window.addEventListener("popstate", () => {
+            history.go(1);
+          });
+        }
+      },  []);
 
      const idleTimer = useRef(null);
 
       const onAction = (e) => {
-        console.log('user did something', e)
+      
       }
     
       const onActive = (e) => {
-        console.log('user is active', e)
+       
       }
     
       const onIdle = (e) => {
@@ -49,13 +56,13 @@ function Header() {
         return (
           <div className="header mb-5 ">
               <IdleTimer
-          ref={idleTimer}
-          element={document}
-          onActive={onActive}
-          onIdle={onIdle}
-          onAction={onAction}
-          debounce={250}
-          timeout={1000 * 60 * 1} />
+              ref={idleTimer}
+              element={document}
+              onActive={onActive}
+              onIdle={onIdle}
+              onAction={onAction}
+              debounce={250}
+              timeout={1000 * 60 * 5} />
             <Link to={previousLocation} onClick={cleanState}>
                 <img  src="/img/back-arrow.svg"  height="15px" alt="GoJump Logo" style={{position: 'absolute', top: '30px', left: '40px' }}/>
            </Link>
@@ -84,7 +91,7 @@ function Header() {
           </div>
     )
       } else {
-        return null;
+        return '';
       }
 }
 

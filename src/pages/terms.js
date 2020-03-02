@@ -81,9 +81,15 @@ const Terms = () => {
       console.log(result)
       if (result.data.success) {
             history.push("/final-confirm")
-     
          }
    }
+
+   useEffect(() => {
+      window.addEventListener("popstate", () => {
+        history.go(1);
+      });
+  
+    },  []);
 
    const updateChecked = (event) => {
       // console.log(event.target.checked)
@@ -106,10 +112,10 @@ const Terms = () => {
     } 
   },  [checkboxes, signature.current]);
 
-   
-
-   let firstName = state.user ? state.user.details.firstName : 'John'
-   let lastName = state.user ? state.user.details.lastName : 'Smith'
+     
+   let firstName = state.userData ? state.userData.firstName : ''
+   let lastName = state.userData ? state.userData.lastName : ''
+   let address = state.userData ? (state.userData.address1 + ' ' + state.userData.address2) : ''
 
    return (
       <>
@@ -127,6 +133,7 @@ const Terms = () => {
                                  </tr>
                                  <tr>
                                        <td>Address</td>
+                                       <td>{address} </td>
                                  </tr>
                               </tbody>
                            </table>
@@ -146,7 +153,7 @@ const Terms = () => {
                         <p className="mb-0">{firstName} {lastName}</p>
                         <p className="sign">
                         <SignatureCanvas penColor='black'
-                           canvasProps={{width: 180, height: 80, className: 'sigPad'}} />
+                           canvasProps={{width: 280, height: 120, className: 'sigPad'}} />
                            </p>
                         <p>Date: {date}</p>
 
@@ -204,7 +211,7 @@ const Terms = () => {
 
                         <p className="sign">
                         <SignatureCanvas penColor='black'
-                           canvasProps={{width: 180, height: 80, className: 'sigPad'}}
+                           canvasProps={{width: 280, height: 120, className: 'sigPad'}}
                            ref={signature} onEnd={signatureTouched} />
                         </p>
                         <p>{firstName} {lastName}</p>
