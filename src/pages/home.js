@@ -32,7 +32,7 @@ const Home = () => {
 
             <Row className="justify-content-center">
                <Col className="start-box" lg="6" >
-                     <p>Tap anywhere to start pre-checkin</p>
+                     <p>Tap here to start pre-checkin</p>
                </Col>
             </Row>
          </Container>

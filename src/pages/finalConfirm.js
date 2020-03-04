@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
-import { Redirect } from 'react-router-dom'
+
 import { store } from '../store';
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory, Link, Redirect } from 'react-router-dom'
 
 
 const FinalConfirm = () => {
@@ -11,12 +11,19 @@ const FinalConfirm = () => {
    const history = useHistory();
    
    const cleanState = () => {
-
       dispatch({
          type: 'resetState',
       })
    }
- 
+   
+   useEffect(() => {
+      console.log('setTimeout')
+      const timer = setTimeout(() => {
+         
+         history.push(`/home/${state.location}`) 
+      }, 25000);
+      return () => clearTimeout(timer);
+   }, []);
 
 
    return (

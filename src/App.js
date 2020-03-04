@@ -23,7 +23,14 @@ function App() {
   return (
     <Router>
         <Header/>
-        <div>
+        <div style={{
+          'position': 'absolute',
+          'height': '100%',
+          'margin-left': 'auto',
+          'margin-right': 'auto',
+          'left': '0',
+          'right': '0'
+          }}>
           <Switch>
             <Route exact path="/login/:location" > <Login /> </Route>
             <Route exact path="/name-confirm" > <NameConfirm /> </Route>
