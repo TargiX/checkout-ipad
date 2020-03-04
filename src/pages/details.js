@@ -159,7 +159,7 @@ const Details = () => {
              isValid,
              errors}) => (
 
-        <Form noValidate  className="ipad-container" onSubmit={handleSubmit}>
+        <Form noValidate  onSubmit={handleSubmit}>
         <Container>
          <Row className="mb-1">
             <Col md="6" >
