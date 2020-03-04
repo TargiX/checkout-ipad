@@ -59,7 +59,7 @@ const EmergencyContact = () => {
             <Col md="6" >
                      <Form.Group controlId="firstName">
                         <Form.Label>FIRST NAME</Form.Label>
-                        <Form.Control type={'text'} placeholder="Enter your first name"  value={values.firstName} onChange={handleChange} isValid={touched.firstName && !errors.firstName}  isInvalid={!!errors.firstName} />
+                        <Form.Control type={'text'} placeholder="Enter their first name"  value={values.firstName} onChange={handleChange} isValid={touched.firstName && !errors.firstName}  isInvalid={!!errors.firstName} />
                         <Form.Control.Feedback></Form.Control.Feedback>
                         <Form.Control.Feedback type="invalid">
                            First name is a required field
@@ -69,7 +69,7 @@ const EmergencyContact = () => {
             <Col md="6" >
                      <Form.Group controlId="lastName">
                         <Form.Label>LAST NAME </Form.Label>
-                        <Form.Control type={'text'}  placeholder="Enter your last name"  value={values.lastName} onChange={handleChange} isValid={touched.lastName && !errors.lastName}  isInvalid={!!errors.lastName} />
+                        <Form.Control type={'text'}  placeholder="Enter their last name"  value={values.lastName} onChange={handleChange} isValid={touched.lastName && !errors.lastName}  isInvalid={!!errors.lastName} />
                         <Form.Control.Feedback type="invalid">
                            Last name is a required field
                         </Form.Control.Feedback>

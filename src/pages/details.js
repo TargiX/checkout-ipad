@@ -40,9 +40,10 @@ const Details = () => {
    const handleSelect = (newTime, setFieldValue) => {
       setTime(newTime);
       let convertedTime = (newTime.getMonth()+1)+'-'+newTime.getDate()+'-'+newTime.getFullYear();
-      setFieldValue('birthDate', convertedTime, true)
+      setFieldValue('birthDate', convertedTime)
       setOpen(false);
       weightRef.current.focus()
+      
    }
 
    useEffect(() => {
@@ -121,6 +122,7 @@ const Details = () => {
          <Formik 
             validationSchema={schema}
             validateOnChange={validateCheck}
+           
           
             onSubmit={ async (values) =>  { 
                setValidate(true)
@@ -187,7 +189,7 @@ const Details = () => {
             <Col md="6" >
                <Form.Group controlId="email">
                   <Form.Label>EMAIL ADDRESS</Form.Label>
-                  <Form.Control type={'email'} ref={emailRef} placeholder="Enter your email address"  value={values.email} onChange={handleChange} onKeyDown={(e) => keyPress(e, phoneRef)} isValid={touched.email && !errors.email} isInvalid={!!errors.email}/>
+                  <Form.Control type={'email'} ref={emailRef}  placeholder="Enter your email address"  value={values.email} onChange={handleChange} onKeyDown={(e) => keyPress(e, phoneRef)} isValid={touched.email && !errors.email} isInvalid={!!errors.email}/>
                   <Form.Control.Feedback type="invalid">
                   {errors.email}
                   </Form.Control.Feedback>
@@ -284,7 +286,7 @@ const Details = () => {
             <Col md="4" >
                <Form.Group controlId="birthDate">
                   <Form.Label>DATE OF BIRTH</Form.Label>
-                  <Form.Control type={'text'} ref={dateRef} placeholder="MM-DD-YY" readOnly={true} value={values.birthDate} onClick={handleClick} onChange={handleChange}  isValid={touched.birthDate && !errors.birthDate} isInvalid={!!errors.birthDate}/>
+                  <Form.Control type={'text'} ref={dateRef} name="date" placeholder="MM-DD-YY" readOnly={true} value={values.birthDate} onClick={handleClick} onChange={handleChange}  isValid={touched.birthDate && !errors.birthDate} isInvalid={!!errors.birthDate}/>
                   <Form.Control.Feedback type="invalid">
                      {errors.birthDate}
                   </Form.Control.Feedback>
@@ -294,8 +296,9 @@ const Details = () => {
                     confirmText={'Confirm'}
                     cancelText={'Cancel'}
                     value={time}
+                    max={time}
                     isOpen={isOpen}
-                    onSelect={(newTime) => {handleSelect(newTime, setFieldValue,validateField)}}
+                    onSelect={(newTime) => {handleSelect(newTime, setFieldValue, validateField);}}
                     onCancel={handleCancel} />
          
             </Col>
