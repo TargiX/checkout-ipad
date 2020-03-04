@@ -23,14 +23,7 @@ function App() {
   return (
     <Router>
         <Header/>
-        <div style={{
-          'position': 'absolute',
-          'height': '100%',
-          'margin-left': 'auto',
-          'margin-right': 'auto',
-          'left': '0',
-          'right': '0'
-          }}>
+        <div >
           <Switch>
             <Route exact path="/login/:location" > <Login /> </Route>
             <Route exact path="/name-confirm" > <NameConfirm /> </Route>
@@ -41,7 +34,6 @@ function App() {
             <Route exact path="/final-confirm" > <FinalConfirm /> </Route>
             <Route exact path="/terms" > <Terms /> </Route>
             <Route exact path="/home/:location"> <Home /> </Route>
-            
             <Route exact path="*" render={() => <Redirect to="/home/lv" />} />
           </Switch>
         </div>

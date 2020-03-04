@@ -115,15 +115,12 @@ const Details = () => {
       weight: yup.number().required().positive().integer()
     });
 
-
-
-  
    return (
          <Formik 
             validationSchema={schema}
             validateOnChange={validateCheck}
            
-          
+
             onSubmit={ async (values) =>  { 
                setValidate(true)
                let formattedValues = values
@@ -162,8 +159,8 @@ const Details = () => {
              isValid,
              errors}) => (
 
-        <Form noValidate  onSubmit={handleSubmit}>
-        <Container >
+        <Form noValidate  className="ipad-container" onSubmit={handleSubmit}>
+        <Container>
          <Row className="mb-1">
             <Col md="6" >
                <Form.Group controlId="firstName">
