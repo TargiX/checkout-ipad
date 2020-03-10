@@ -4,23 +4,27 @@ import {
       Link, useHistory, 
  } from "react-router-dom";
 import { useLocation,  } from "react-router";
-import { Container } from 'react-bootstrap';
+import { Container, Button, Spinner } from 'react-bootstrap';
 import IdleTimer from 'react-idle-timer'
 
-function Header() {
+function Header(props) {
       const globalState = useContext(store);
       const { dispatch, state } = globalState;
 
       let location = useLocation();
       let history = useHistory()
-
+      let action =  props.action || "";
+      let disabled = props.disabled || false;
+      let bouncing = props.bouncing || '';
+      let error =  props.error || "";
+      let loading =  props.loading || "";
 
       const cleanState = () => {
         if (previousLocation == "/login/" + state.location)
         dispatch({
            type: 'resetState',
         })
-     }
+      }
 
       useEffect(() => {
         if (location.pathname == '/terms') {
@@ -77,16 +81,23 @@ function Header() {
 
                 {
                   location.pathname != "/details-confirm" && location.pathname != "/emergency-contact" ?
-
                   <div>  
                     <div className="header__text-grey">Booking Ref:</div>
                     <div className="header__text-dark">{state.bookingId || ''} </div>
                   </div> 
 
                   : <div></div>
-
                 }
-                  
+
+                <Button className={`${bouncing && !disabled ? "bouncing" : ""}`} disabled={disabled} onClick={action}>
+                    { loading ? <> <Spinner
+                        as="span"
+                        animation="grow"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      /> Loading... </> : 'Next'}
+                    </Button>
             </Container>
           </div>
     )

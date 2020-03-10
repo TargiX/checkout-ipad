@@ -10,7 +10,11 @@ body {
 
 .header {
    height: 76px;
-   border-bottom: 1px solid $light-grey;
+   position: sticky;
+   z-index: 9999;
+   top: 0px;
+   background: #fff;
+   border-bottom: 1px solid #EAEDF3;
 
    .main-text {
       font-size: 18px;
@@ -67,7 +71,7 @@ body {
 
 // Fotter
 .footer {
-   position: absolute;
+   position: fixed;
    bottom: 0px;
    width: 100%;
    height: 80px;

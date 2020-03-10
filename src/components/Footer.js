@@ -6,8 +6,6 @@ import { Container, Button, ProgressBar, Spinner } from 'react-bootstrap';
 
 function Footer(props) {
       let location = useLocation();
-
-      
       let disabled = props.disabled || false;
       let bouncing = props.bouncing || '';
       let action =  props.action || "";
@@ -39,7 +37,6 @@ function Footer(props) {
                         role="status"
                         aria-hidden="true"
                       /> Loading... </> : 'Next'}
-                     
                     </Button>
                 </div>
             </Container>

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 import { useHistory } from 'react-router-dom'
 
 
@@ -18,7 +19,8 @@ const DetailsConfirm = () => {
 
    return (
       <>
-         <Container className="confirm-item" >
+        <Header action={handleSubmit} location="/emergency-contact" ></Header>
+            <Container className="confirm-item" >
                <Row >
                   <Col md="4"  className="confirm-item__label" >
                      <span>Your First Name  </span>  

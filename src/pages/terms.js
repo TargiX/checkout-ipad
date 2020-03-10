@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react'
 import { Form,  Button, Container, Row, Col } from 'react-bootstrap'
 import { Formik,  Field } from 'formik';
 import * as yup from 'yup';
+import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { store } from '../store';
 import PhoneInput from 'react-phone-input-2'
@@ -63,11 +64,6 @@ const Terms = () => {
 
    const [errorMessage, setError] = useState('')
 
-   const getSignature = () => {
-
-     
-   }
-
    const handleSubmit = async (event) => {
 
       setLoading(true)
@@ -111,9 +107,6 @@ const Terms = () => {
     },  []);
 
    const updateChecked = (event) => {
-      // console.log(event.target.checked)
-      // console.log(event.target.id)
-      // console.log(checkboxes)   
       setCheckboxes({...checkboxes, [event.target.id]: event.target.checked})
    }
 
@@ -138,6 +131,7 @@ const Terms = () => {
 
    return (
       <>
+         <Header action={handleSubmit} disabled={confirmButton} bouncing={true} loading={loading} location="/details-confirm"></Header>
          <Container id="terms" className="" >
             <Row >
                <Col md="12"  className="confirm-item__label" >

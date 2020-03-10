@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react'
 import { Form,  Button, Container, Row, Col } from 'react-bootstrap'
 import { Formik,  Field } from 'formik';
 import * as yup from 'yup';
+import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { store } from '../store';
 import PhoneInput from 'react-phone-input-2'
@@ -160,6 +161,7 @@ const Details = () => {
              errors}) => (
 
         <Form noValidate  onSubmit={handleSubmit}>
+        <Header action={() => { handleSubmit(); setValidate(true)} } location="/details-confirm"></Header>
         <Container>
          <Row className="mb-1">
             <Col md="6" >

@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 import 'react-phone-input-2/lib/style.css'
 import { useHistory } from 'react-router-dom'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 
 
 const EmergencyContact = () => {
@@ -54,6 +55,7 @@ const EmergencyContact = () => {
              isValid,
              errors}) => (
         <Form noValidate  onSubmit={handleSubmit}>
+        <Header action={handleSubmit} location="/terms"  ></Header>
         <Container >
          <Row className="mb-5">
             <Col md="6" >

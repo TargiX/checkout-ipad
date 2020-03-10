@@ -11,7 +11,6 @@ const Login = () => {
    const history = useHistory();
    const [errorMessage, setError] = useState('')
    let { location } = useParams();
-
    const globalState = useContext(store);
    const { dispatch, state} = globalState;
 
@@ -33,10 +32,8 @@ const Login = () => {
          else {
             setError(result.data.error); 
          }
-         
       };
-
-  
+      
       useEffect(() => {
          if (state.user.success === true) {
             if (state.user.details.parent && state.user.details.parentName == formData.firstName ) {
