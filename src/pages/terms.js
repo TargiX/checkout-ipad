@@ -24,6 +24,7 @@ const Terms = () => {
    const [confirmButton, setConfirmButton] = useState(true);
 
    const [loading, setLoading] = useState(false);
+   const signature0 = useRef(null);
    const signature = useRef(null);
 
    const [checkboxes, setCheckboxes] = useState({
@@ -111,18 +112,27 @@ const Terms = () => {
    }
 
    const signatureTouched = () => {
-      if (!Object.values(checkboxes).includes(false) ) {
+      if (!Object.values(checkboxes).includes(false) && !signature.current.isEmpty() && !signature0.current.isEmpty()) {
          setConfirmButton(false) // 'Confirm' button become active
      } 
    }
 
+
+
+   const signatureCleaned = () => {
+         setConfirmButton(true) // 'Confirm' button become disablede
+   } 
+   
+
+
    useEffect(() => {
-    if (!Object.values(checkboxes).includes(false) && !signature.current.isEmpty()) {
+    if (!Object.values(checkboxes).includes(false) && !signature.current.isEmpty() && !signature0.current.isEmpty()) {
+       console.log()
         setConfirmButton(false) // 'Confirm' button become active
     } else {
       setConfirmButton(true) // 'Confirm' button stays disabled
     } 
-  },  [checkboxes, signature.current]);
+  },  [checkboxes]);
 
      
    let firstName = state.userData ? state.userData.firstName : ''
@@ -166,7 +176,11 @@ const Terms = () => {
                         <p className="mb-0">{firstName} {lastName}</p>
                         <p className="sign">
                         <SignatureCanvas penColor='black'
+                           ref={signature0}
+                           onEnd={signatureTouched} 
                            canvasProps={{width: 500, height: 180, className: 'sigPad'}} />
+
+                        <Button size="sm" variant="outline-primary" onClick={() => {signature0.current.clear(); signatureCleaned()}}> Clear </Button>
                            </p>
                         <p>Date: {humanDate}</p>
 
@@ -226,6 +240,8 @@ const Terms = () => {
                         <SignatureCanvas penColor='black'
                            canvasProps={{width: 500, height: 180, className: 'sigPad'}}
                            ref={signature} onEnd={signatureTouched} />
+                        <Button size="sm" variant="outline-primary" onClick={() => {signature.current.clear(); signatureCleaned()}}> Clear </Button>
+
                         </p>
                         <p>{firstName} {lastName}</p>
                         <p style={{'marginBottom': '6rem'}} >Date: {humanDate}</p>

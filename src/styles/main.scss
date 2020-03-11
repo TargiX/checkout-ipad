@@ -11,7 +11,7 @@ body {
 .header {
    height: 76px;
    position: sticky;
-   z-index: 9999;
+   z-index: 1;
    top: 0px;
    background: #fff;
    border-bottom: 1px solid #EAEDF3;
@@ -125,6 +125,10 @@ body {
    &::placeholder {
       color: $medium-grey;
    }
+}
+
+.input-group-text {
+   font-size: 14px;
 }
 
 .top-logo {

@@ -90,8 +90,8 @@ const EmergencyContact = () => {
                               type: "tel",
                               id: "phone",
                               name: "phone",
-                           }}
-                        />
+                                    }}
+                              />
                            <Form.Control.Feedback type="invalid" style={{'display': !!errors.phone ? 'block' : 'none' }}>
                               Must be a valid phone number
                            </Form.Control.Feedback>

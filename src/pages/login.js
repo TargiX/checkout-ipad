@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Form, Button, Container, Row, Col } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col, InputGroup } from 'react-bootstrap'
 import { store } from '../store';
 import { Redirect } from 'react-router-dom'
 import axios from 'axios';
@@ -18,14 +18,14 @@ const Login = () => {
 
       event.preventDefault();
          const result = await axios(
-            `https://booking.staging.dzmanage.com/api/v1/verifyBookingId/${formData.bookingId}/${formData.firstName}`,
+            `https://booking.staging.dzmanage.com/api/v1/verifyBookingId/${location.toUpperCase() + '-2020-' + formData.bookingId}/${formData.firstName.toUpperCase()}`,
             );
             
          if (!result.data.error) {
             await dispatch({
                type: 'setBookingData',
                user: result.data,
-               bookingId: formData.bookingId,
+               bookingId: `${location.toUpperCase() + '-2020-' + formData.bookingId}`,
                location: location
                })
             }
@@ -33,10 +33,10 @@ const Login = () => {
             setError(result.data.error); 
          }
       };
-      
+
       useEffect(() => {
          if (state.user.success === true) {
-            if (state.user.details.parent && state.user.details.parentName == formData.firstName ) {
+            if (state.user.details.parent && state.user.details.parentName == formData.firstName.toUpperCase() ) {
                history.push("/name-confirm") 
             } else {
                history.push("/details") 
@@ -58,18 +58,18 @@ const Login = () => {
                
                <Row className="justify-content-center">
                   <Col className="form-wrapper" lg="6" >
-                     <Form>
-                     <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Enter booking ID</Form.Label>
+                  <Form>
+                     <Form.Label>Enter booking ID</Form.Label>
+                     <InputGroup controlId="formBasicEmail">
+                        <InputGroup.Prepend>
+                           <InputGroup.Text id="basic-addon3">
+                              {`${location.toUpperCase() + '-2020-'}`}
+                           </InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control  maxLength={7}  id="basic-url" aria-describedby="basic-addon3" value={formData.bookingId} onChange={event => setFormData({...formData, bookingId: event.target.value.toUpperCase()})}/>
+                     
 
-                           <InputMask mask={`${location.toUpperCase() + '-2020-'}*******`} alwaysShowMask={true}  value={formData.bookingId} onChange={event => setFormData({...formData, bookingId: event.target.value.toUpperCase()})}>
-                           {(inputProps) =>  <Form.Control 
-                           type="text"
-                           placeholder="Booking Id" 
-                           {...inputProps}
-                           />}
-                        </InputMask>
-                     </Form.Group>
+                     </InputGroup>
                      
                      <Form.Group controlId="formBasicPassword">
                         <Form.Label>First Name</Form.Label>
