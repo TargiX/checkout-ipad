@@ -134,7 +134,7 @@ const Details = () => {
                   }
             }
             initialValues={{
-               firstName: state.parent ?  state.user.details.parentName : state.userData ? state.userData.firstName : '',
+               firstName: state.firstName || '',
                lastName: state.parent ?  state.user.details.parentSurName   : state.userData ? state.userData.lastName : '', 
                email: state.parent ?  state.user.details.parentEmail  : state.userData ? state.userData.email : '',
                phone: state.parent ?  state.user.details.parentPhone  : state.userData ? state.userData.phone : '',

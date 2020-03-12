@@ -25,6 +25,7 @@ const Login = () => {
             await dispatch({
                type: 'setBookingData',
                user: result.data,
+               firstName: formData.firstName,
                bookingId: `${location.toUpperCase() + '-2020-' + formData.bookingId}`,
                location: location
                })

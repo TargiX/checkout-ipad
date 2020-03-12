@@ -178,7 +178,7 @@ const Terms = () => {
                            onEnd={signatureTouched} 
                            canvasProps={{width: 500, height: 180, className: 'sigPad'}} />
 
-                        <Button size="sm" variant="outline-primary" onClick={() => {signature0.current.clear(); signatureCleaned()}}> Clear </Button>
+                        <Button className="d-block"  size="sm" variant="outline-primary" onClick={() => {signature0.current.clear(); signatureCleaned()}}> Clear </Button>
                            </p>
                         <p>Date: {humanDate}</p>
 
@@ -238,7 +238,7 @@ const Terms = () => {
                         <SignatureCanvas penColor='black'
                            canvasProps={{width: 500, height: 180, className: 'sigPad'}}
                            ref={signature} onEnd={signatureTouched} />
-                        <Button size="sm" variant="outline-primary" onClick={() => {signature.current.clear(); signatureCleaned()}}> Clear </Button>
+                        <Button className="d-block" size="sm" variant="outline-primary" onClick={() => {signature.current.clear(); signatureCleaned()}}> Clear </Button>
 
                         </p>
                         <p>{firstName} {lastName}</p>

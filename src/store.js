@@ -7,6 +7,7 @@ const initialState = {
    bookingId: '',
    location: '',
    userData: '',
+   firstName: '',
    signature: '',
 };
 
@@ -21,6 +22,7 @@ const StateProvider = ( { children } ) => {
            ...state,
            user: action.user,
            bookingId: action.bookingId,
+           firstName:  action.firstName,
            location: action.location
         };
 

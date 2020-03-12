@@ -31,7 +31,7 @@ const FinalConfirm = () => {
                <Row className="justify-content-center align-items-center" style={{height: '90vh'}}>
                   <Col lg="6" className="text-center ">
                   <img className="mb-5" src="/img/giphy3.png"  width="400px" />
-                     <h3>You’re good to go, {state.user ? state.user.details.parentName : 'Undefined'}! </h3>
+                     <h3>You’re good to go, {state.userData ? state.userData.firstName : 'Undefined'}! </h3>
                         <div className="mt-5"> 
                            <Link to={`/home/${state.location}`} onClick={cleanState}>
                               <Button 
