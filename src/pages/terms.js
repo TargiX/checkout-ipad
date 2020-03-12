@@ -178,7 +178,7 @@ const Terms = () => {
 
    return (
       <>
-         <Header action={handleSubmit} enableAll={setAllCheckboxTrue} disabled={confirmButton} bouncing={true} loading={loading} location="/details-confirm"></Header>
+         <Header action={handleSubmit}  disabled={confirmButton} bouncing={true} loading={loading} location="/details-confirm"></Header>
          <Container id="terms" className="" >
             <Row >
                <Col md="12"  className="confirm-item__label" >
