@@ -14,6 +14,7 @@ function Header(props) {
       let location = useLocation();
       let history = useHistory()
       let action =  props.action || "";
+      let enableAll =  props.enableAll || "";
       let disabled = props.disabled || false;
       let bouncing = props.bouncing || '';
       let error =  props.error || "";
@@ -75,7 +76,7 @@ function Header(props) {
                 <div>
                   { location.pathname == "/details-confirm" ? <span className="main-text">Confirm Details</span> :
                     location.pathname == "/emergency-contact" ? <span className="main-text">Emergency Contact</span> :
-                    location.pathname == "/terms" ? <span className="main-text">Terms & Conditions</span> :
+                    location.pathname == "/terms" ? <span className="main-text" onClick={enableAll}>Terms & Conditions</span> :
                     <img  src="/img/gojump-america-logo.png"  height="26px" alt="GoJump Logo"/>}
                 </div>
 
